@@ -9,13 +9,23 @@ pipeline{
 	  
 	  stage("checkout"){
 	   steps{
-	   git 'https://github.com/ashisnishanka/gitrealtime.git'
+	   git credentialsId: 'github', url: 'https://github.com/ashisnishanka/weekenddemo.git'
 	   }
 	                  }
 	
 	   stage("compile"){
 	    steps{
 		 sh 'mvn compile'
+		}
+		}
+		  stage("test"){
+	    steps{
+		 sh 'mvn test'
+		}
+		}
+		   stage("package"){
+	    steps{
+		 sh 'mvn package'
 		}
 		}
 	  }
